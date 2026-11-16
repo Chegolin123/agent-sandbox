@@ -1,0 +1,16 @@
+# Скопируйте в sandbox.toml и правьте под себя: agent-sandbox сам его не ищет.
+[limits]
+timeout = 30        # стенных секунд до убийства дерева процессов
+cpu = 20            # секунд процессорного времени на всю задачу
+memory_mb = 1024    # предел памяти
+procs = 16          # одновременно живых процессов (работает на Windows)
+
+[policy]
+# Пустой список = разрешено всё. Заполненный = deny-by-default по имени программы.
+allow_programs = ["python", "python3", "node", "bash", "sh", "pwsh", "powershell", "cmd"]
+# Что дополнительно пустить из окружения. Секреты вырезаются даже отсюда.
+env_keep = ["PATH", "SYSTEMROOT", "TEMP", "TMP", "LANG", "TERM"]
+
+[paths]
+audit = "audit/audit.jsonl"
+runs = "runs"
